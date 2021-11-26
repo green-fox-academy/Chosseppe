@@ -6,10 +6,10 @@ public class Define_basic_info {
         // Your age as an integer
         int age = 30;
         // Your height in meters as a double
-        float height = (float) (1.77 * 2);
+        float height = (float) (1.77);
         // Whether you are married or not as a boolean
         boolean married = false;
 
-        System.out.println("Hello, my name is " + name + ", I am " + age + " years old, " + (height / 2) + " meters tall and am I married? " + married);
+        System.out.println("Hello, my name is " + name + ", I am " + age + " years old, " + height + " meters tall and am I married? " + married);
     }
 }
