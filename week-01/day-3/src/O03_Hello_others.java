@@ -1,4 +1,4 @@
-public class OO3_Hello_others {
+public class O03_Hello_others {
     public static void main(String[] args) {
         // Greet 3 of your classmates with this program in three separate lines
         // like:

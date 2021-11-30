@@ -1,4 +1,4 @@
-public class Conditional_variable_mutation {
+public class O23_Conditional_variable_mutation {
     public static void main(String[] args) {
         double a = 24;
         int output1 = 0;

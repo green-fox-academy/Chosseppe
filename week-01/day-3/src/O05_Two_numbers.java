@@ -1,4 +1,4 @@
-public class OO5_Two_numbers {
+public class O05_Two_numbers {
     public static void main(String[] args) {
         // Create a program that prints a few operations on two numbers: 22 and 13
 

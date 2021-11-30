@@ -1,7 +1,7 @@
 public class Types {
     public static void main(String[] args) {
         // Prints a string to the terminal window
-        System.out.println("Hello, World!");
+        System.out.println("Hello again! Did you forget something?");
 
         // Prints an integer to the terminal window
         System.out.println(42);

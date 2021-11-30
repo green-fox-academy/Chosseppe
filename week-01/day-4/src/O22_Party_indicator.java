@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Party_indicator {
+public class O22_Party_indicator {
     public static void main(String[] args) {
         // Write a program that asks for two numbers
         // The first number represents the number of girls that comes to a party, the

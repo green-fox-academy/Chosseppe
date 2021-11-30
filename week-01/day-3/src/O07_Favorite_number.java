@@ -1,4 +1,4 @@
-public class OO7_Favorite_number {
+public class O07_Favorite_number {
     public static void main(String[] args) {
         int favoriteNumber;
         // Store your favorite number in a variable (as a number)

@@ -1,4 +1,4 @@
-public class Variable_mutation {
+public class O11_Variable_mutation {
     public static void main(String[] args) {
         int a = 3;
         // make the "a" variable's value bigger by 10

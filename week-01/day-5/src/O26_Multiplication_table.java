@@ -1,5 +1,6 @@
-public class Multiplication_table {
+public class O26_Multiplication_table {
     public static void main(String[] args) {
+
         multiplicationTable(15);
     }
     // Create a program

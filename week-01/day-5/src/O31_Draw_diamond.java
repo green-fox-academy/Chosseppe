@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Draw_diamond {
+public class O31_Draw_diamond {
     // Write a program that reads a number from the standard input, then draws a
 // diamond like this:
 //

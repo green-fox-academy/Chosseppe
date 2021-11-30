@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class O2O_One_two_a_lot {
+public class O20_One_two_a_lot {
     public static void main(String[] args) {
         // Write a program that reads a number form the standard input,
         // If the number is zero or smaller it should print: Not enough

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Count_from_to {
+public class O27_Count_from_to {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);

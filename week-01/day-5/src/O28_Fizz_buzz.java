@@ -3,9 +3,15 @@
 // and for the multiples of five print “Buzz”.
 // For numbers which are multiples of both three and five print “FizzBuzz”.
 
-public class Fizz_buzz {
+public class O28_Fizz_buzz {
     // write your code here for Gradescope testing
     public static void main(String[] args) {
+
+        fizzBuzz();
+
+    }
+    public static void fizzBuzz() {
+        // write your code here for Gradescope testing
         for (int i = 1; i < 101; i ++)
             if ( i % 3 ==0 || i % 5 == 0)
                 if ( i % 3 == 0 && i % 5 == 0)

@@ -1,4 +1,4 @@
-public class OO2_Humpty_dumpty {
+public class O02_Humpty_dumpty {
     public static void main(String[] args) {
         // Modify this program to print Humpty Dumpty riddle correctly
         System.out.println("Humpty Dumpty sat on a wall,");
