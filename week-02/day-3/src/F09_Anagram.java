@@ -12,13 +12,13 @@ public class F09_Anagram {
 
     private static boolean isAnagram(String input, String input2) {
 
-            char[] kvp1 = input.toCharArray();
-            char[] kvp2 = input2.toCharArray();
+            char[] list1 = input.toCharArray();
+            char[] list2 = input2.toCharArray();
 
-            Arrays.sort(kvp1);
-            Arrays.sort(kvp2);
+            Arrays.sort(list1);
+            Arrays.sort(list2);
 
-            return Arrays.equals(kvp1, kvp2);
+            return Arrays.equals(list1, list2);
     }
 
 }
