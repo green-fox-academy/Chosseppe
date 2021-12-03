@@ -1,25 +1,31 @@
 import javax.swing.*;
 import java.awt.*;
+
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class D04_Horizontal {
-    public static void drawImage(Graphics graphics) {
-        // Create a function that takes 3 parameters and draws a single line
-        // Parameters: the x and y coordinates of the line's starting point and the graphics
-        // The function shall draw a 50-pixel long horizontal line from that point
-        // Draw at least 3 lines with that function using a loop
+public class DP02_Envelope_star {
+    public static void drawImage(Graphics graphics){
 
-        for(int y = 50; y < 600; ){
-            graphics.drawLine( 100, y += 50, 150, y);
-            y += 50;
+        int HF = (HEIGHT/ 100);
+        int WF = (WIDTH/ 100);
+
+        for(int i=WIDTH/2; i > HF; i-=HF * 5) {
+
+            graphics.setColor(Color.green);
+
+            graphics.drawLine(i, (HEIGHT/2), WIDTH/2, (HEIGHT/2) + i);
+            graphics.drawLine(i, (HEIGHT/2), WIDTH/2, (HEIGHT/2) - i);
+
+            graphics.drawLine(WIDTH - i, HEIGHT/2,WIDTH/2,HEIGHT/2 + i);
+            graphics.drawLine(WIDTH - i, HEIGHT/2,WIDTH/2,HEIGHT/2 - i);
+
         }
-
 
     }
 
     // Don't touch the code below
-    static int WIDTH = 800;
-    static int HEIGHT = 600;
+    static int WIDTH = 320;
+    static int HEIGHT = 320;
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");

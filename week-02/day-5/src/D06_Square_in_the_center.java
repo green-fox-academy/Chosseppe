@@ -2,24 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class D04_Horizontal {
-    public static void drawImage(Graphics graphics) {
-        // Create a function that takes 3 parameters and draws a single line
-        // Parameters: the x and y coordinates of the line's starting point and the graphics
-        // The function shall draw a 50-pixel long horizontal line from that point
-        // Draw at least 3 lines with that function using a loop
-
-        for(int y = 50; y < 600; ){
-            graphics.drawLine( 100, y += 50, 150, y);
-            y += 50;
-        }
-
-
-    }
-
+public class D06_Square_in_the_center {
     // Don't touch the code below
     static int WIDTH = 800;
     static int HEIGHT = 600;
+
+    public static void drawImage(Graphics graphics) {
+        // Draw a green 10x10 square to the canvas' center
+
+        graphics.setColor(Color.green);
+        graphics.drawRect((WIDTH/2) -5, HEIGHT/2 -5,10,10);
+
+    }
+
+
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
