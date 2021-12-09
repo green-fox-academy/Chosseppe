@@ -7,8 +7,8 @@ public class Fleet {
     private ArrayList<String> things;
 
     public Fleet() {
-        things = new ArrayList<>();
-    }
+        things =new ArrayList<>();
+}
 
     public void add(String thing) {
         things.add(thing);

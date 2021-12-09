@@ -1,6 +1,6 @@
 public class C03_Animal {
 
-    public static class Aniaml{
+    public class Aniaml{
 
         int hunger = 50;
         int thirst = 50;

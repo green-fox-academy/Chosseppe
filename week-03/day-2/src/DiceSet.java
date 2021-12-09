@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class C08_DiceSet {
+public class DiceSet {
     ArrayList<Integer> dice = new ArrayList<>();
 
     public List<Integer> rollSet() {
@@ -29,12 +29,22 @@ public class C08_DiceSet {
         dice.set(k, (int) (Math.random() * 6) + 1);
     }
 
+
+    public void DiceSet(){
+        this.dice = new ArrayList<>(1);
+        dice.add(0);
+    }
+
+
+
     public static void main(String[] args) {
         // You have a `DiceSet` class which has a list for 6 dice
         // You can roll all of them with the rollSet() method
         // You can check the current rolled numbers with getCurrentSet() and getCurrentItem() method
-        // You can reroll all with the rerollSet(), or reroll one with the rerollItem() method
+        // You can re-roll all with the re-rollSet(), or re-roll one with the re-rollItem() method
         // Your task is to roll the dice until all of the dice are 6
+
+
 
         DiceSet diceSet = new DiceSet();
         System.out.println(diceSet.getCurrentSet());
@@ -44,6 +54,13 @@ public class C08_DiceSet {
         diceSet.rerollSet();
         System.out.println(diceSet.getCurrentSet());
         diceSet.rerollItem(4);
+        System.out.println(diceSet.getCurrentSet());
+
+        for(int i = 0; i < 6; i++){
+            while(diceSet.getCurrentItem(i) != 6){
+                diceSet.rerollItem(i);
+            }
+        }
         System.out.println(diceSet.getCurrentSet());
     }
 }
