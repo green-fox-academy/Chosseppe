@@ -1,5 +1,7 @@
 package C03_Aircraft_carrier;
 
+import java.util.List;
+
 public class Aircrafts {
 
     String type;
@@ -8,33 +10,30 @@ public class Aircrafts {
     int AmmoStorage;
     int Damage;
 
-    public void F35(){
-        this.type = "F35";
-        this.MaxAmmo = 12;
-        this.BaseDamage = 50;
-        this.AmmoStorage = 0;
-        this.Damage = 0;
-
+    public void getStatus(){
+        System.out.println("Type " + this.type + ", Ammo: " + this.AmmoStorage + ", Base Damage: " + this.BaseDamage + ", All Damage: " + this.Damage);
     }
 
-    public void F16(){
-        this.type = "F16";
-        this.MaxAmmo = 8;
-        this.BaseDamage = 30;
-        this.AmmoStorage = 0;
-        this.Damage = 0;
+    public void getType(){
+        System.out.println("Type " + this.type);
+    }
 
+    public boolean isPriority(){
+        return (this.type == "F35");
+    }
+
+    public int RefillAmmo(int input_ammo) {
+        int unused_Ammo = this.AmmoStorage;
+        this.AmmoStorage += input_ammo;
+        return unused_Ammo;
     }
 
     public void fight(){
         for(int d = AmmoStorage -1; d >= 0; d--){
             this.AmmoStorage --;
             this.Damage +=  this.BaseDamage;
+            //carrier.TakenDMG += Damage;
         }
     }
-
-    public int RefillAmmo(){
-        return Carrier.setMainAmmoStorage(Carrier.getMainAmmoStorage() - (this.MaxAmmo-this.AmmoStorage));
-    }
-
 }
+
