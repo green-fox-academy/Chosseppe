@@ -46,6 +46,7 @@ public class shoppingList2 {
         //Who buys more Apples?
         System.out.println(whoBuysMore(BobsShoppingList, AlicesShoppingList, "Apples"));
         //Who buys more of different products?
+        System.out.println(moreDifferent(BobsShoppingList, AlicesShoppingList));
         //Who buys more items? (more pieces)
 
     }
@@ -65,30 +66,37 @@ public class shoppingList2 {
         return sumOfPrices;
     }
 
-    private static String whoBuysMore(HashMap comparedBob, HashMap compared2Alice, String product){
+    private static String whoBuysMore(HashMap comparedBob, HashMap compared2Alice, String product) {
         int comparedProduct;
         int comparedProduct2;
 
-        if(comparedBob.get(product) == null) {
+        if (comparedBob.get(product) == null) {
             comparedProduct = 0;
-        }else{
+        } else {
             comparedProduct = (int) comparedBob.get(product);
         }
 
-        if(compared2Alice.get(product) == null){
+        if (compared2Alice.get(product) == null) {
             comparedProduct2 = 0;
-        }else{
+        } else {
             comparedProduct2 = (int) compared2Alice.get(product);
         }
 
-        if(comparedProduct == comparedProduct2){
+        if (comparedProduct == comparedProduct2) {
             return "No one";
-        }else if(comparedProduct < comparedProduct2) {
+        } else if (comparedProduct < comparedProduct2) {
             return "Alice";
-        }else{
+        } else {
             return "Bob";
         }
+    }
 
-        
+    private static String  moreDifferent(HashMap bobList, HashMap aliceList){
+            if(bobList.size() > aliceList.size()){
+                return "Bob";
+            }else{
+                return "Alice";
+            }
+
     }
 }
