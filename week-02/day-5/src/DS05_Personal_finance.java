@@ -20,8 +20,10 @@ public class DS05_Personal_finance {
             todo: Which was our cheapest spending?
             todo: What was the average amount of our spendings? (print this as a float value)
          */
-
-        System.out.println(spending(expenses));
+        for(int item:spending(expenses)){
+            System.out.println(item);
+        }
+        System.out.println(spending(expenses).get(0)/expenses.size());
     }
     private static List<Integer> spending(List<Integer> lst) {
         int countt = 0;
