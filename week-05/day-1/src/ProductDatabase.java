@@ -80,11 +80,11 @@ public class ProductDatabase {
     }
 
     private static String cheapestProduct(Map<String, Integer> inputMap){
-        float cheapProduct = averagePrice(inputMap);
         String cheapest = null;
         for(String key : inputMap.keySet()){
-            if(inputMap.get(key) < cheapProduct){
-                cheapProduct = inputMap.get(key);
+            if(cheapest == null){
+                cheapest = key;
+            }else if(inputMap.get(cheapest) > inputMap.get(key)){
                 cheapest = key;
             }
         }
