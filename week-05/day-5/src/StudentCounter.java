@@ -54,7 +54,7 @@ public class StudentCounter {
         // the sum (as an integer) of the ages of students who have less than 5 candies
 
         // Expected output: 29
-        //System.out.println(getSumOfAges(studentMaps));
+        System.out.println(getSumOfAges(studentMaps));
     }
 
     private static List<String> getListOfNames(List<Map<String, Object>> inputList){
@@ -73,5 +73,21 @@ public class StudentCounter {
         }
 
         return outputList;
+    }
+
+    private static Integer getSumOfAges(List<Map<String, Object>> inputList){
+        Integer sum = 0;
+        Integer temp = 0;
+        for(Map<String, Object> student : inputList) {
+            for (String key : student.keySet()) {
+                if (key.equals("age")) {
+                    temp = (Integer) student.get(key);
+                }
+                if(key.equals("candies") && (Integer) student.get(key) < 5){
+                    sum += temp;
+                }
+            }
+        }
+        return sum;
     }
 }
