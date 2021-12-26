@@ -18,15 +18,15 @@ public class QuoteSwap{
         List<String> output = new ArrayList<>();
         for(int i = 0; i < inputList.size(); i++){
             if(!inputList.get(2).equals("cannot") && i == 2){
-                for(int incr = 0; incr < inputList.size(); incr++){
-                    if(inputList.get(incr).equals("cannot")){
-                        output.add(inputList.get(incr));
+                for (String s : inputList) {
+                    if (s.equals("cannot")) {
+                        output.add(s);
                     }
                 }
             }else if(!inputList.get(5).equals("do") && i == 5){
-                for(int incr = 0; incr < inputList.size(); incr++){
-                    if(inputList.get(incr).equals("do")){
-                        output.add(inputList.get(incr));
+                for (String s : inputList) {
+                    if (s.equals("do")) {
+                        output.add(s);
                     }
                 }
             }else{
