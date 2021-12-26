@@ -29,8 +29,9 @@ public class ElementFinder{
     private static String containsSevenDifferent(List<Integer> inputList){
         Boolean trueStatement = false;
         for( Integer integer : inputList){
-            if(integer.equals(7)){
+            if (integer.equals(7)) {
                 trueStatement = true;
+                break;
             }
         }
         if(trueStatement.equals(true)){
