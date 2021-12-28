@@ -17,11 +17,8 @@ public class CopyFile {
         //  - path and name of the target file
         // It should return a boolean that shows if the copy was successful
 
-        System.out.println("Write path to file which you want to copy with file name (absolut or relative):");
-        String inputPath = scanner.next();
-
-        System.out.println("Write path of destination with file name where you want to copy:");
-        String copyPath = scanner.next();
+        String inputPath = "new-file.txt";
+        String copyPath = "copy-file.txt";
 
         copyFile(readFile(inputPath), copyPath);
 
