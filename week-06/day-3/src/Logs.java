@@ -17,7 +17,7 @@ public class Logs {
         List<String> inputFile = Files.readAllLines(filePath);
 
         System.out.println(uniqueIP(inputFile));
-        
+
         System.out.println(requestRatio(inputFile));
     }
 
