@@ -48,6 +48,7 @@ public class shoppingList2 {
         //Who buys more of different products?
         System.out.println(moreDifferent(BobsShoppingList, AlicesShoppingList));
         //Who buys more items? (more pieces)
+        System.out.println(morePieces(BobsShoppingList, AlicesShoppingList));
 
     }
 
@@ -98,5 +99,24 @@ public class shoppingList2 {
                 return "Alice";
             }
 
+    }
+
+    private static String morePieces(HashMap bobList, HashMap aliceList){
+        int countBobsPieces = 0;
+        int countAlicesPieces = 0;
+
+        for(Object value: bobList.values()){
+            countBobsPieces += (Integer) value;
+        }
+
+        for(Object value: aliceList.values()){
+            countAlicesPieces += (Integer) value;
+        }
+
+        if(countBobsPieces > countAlicesPieces){
+            return "Bob";
+        }else{
+            return "Alice";
+        }
     }
 }
