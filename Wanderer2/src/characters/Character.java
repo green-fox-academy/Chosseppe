@@ -6,99 +6,141 @@ public class Character {
 
     Random random = new Random();
 
-    Integer level;
+    int level;
     Integer maxHP;
-    Integer curretnHP;
-    Integer defendPoints;
-    Integer strikePoints;
-    boolean combatMode;
-    String combatWith;
+    int curretnHP;
+    int defendPoints;
+    int strikePoints;
     String image;
-    String goDown;
-    String goUp;
-    String goLeft;
-    String goRight;
     String displayedName;
     boolean alive;
-    Integer boxX;
-    Integer boxY;
-    Integer theX;
-    Integer theY;
-    Integer outputX;
-    Integer outputY;
+    int startingPointX;
+    int startingPointY;
+    int pointX;
+    int pointY;
+    int currentPointX;
+    int currentPointY;
+    boolean battleMode;
 
     public void goDown(){
-        this.theY++;
+        this.pointY++;
     }
 
     public void goUp(){
-        this.theY--;
+        this.pointY--;
     }
 
     public void goLeft() {
-        theX--;
+        pointX--;
     }
 
     public void goRight() {
-        theX++;
+        pointX++;
     }
 
     public Integer getBoxX() {
-        return boxX;
+        return startingPointX;
     }
 
     public Integer getBoxY() {
-        return boxY;
+        return startingPointY;
     }
     public void setBoxX(int inputNumber){
-        boxX = inputNumber;
+        startingPointX = inputNumber;
     }
 
     public void setBoxY(int inputNumber){
-        boxY = inputNumber;
-    }
-
-    public String getGoRight() {
-        return goRight;
-    }
-
-    public String getGoLeft() {
-        return goLeft;
-    }
-
-    public String getGoDown() {
-        return goDown;
-    }
-
-    public String getGoUp() {
-        return goUp;
+        startingPointY = inputNumber;
     }
 
     public String getImage() {
         return image;
     }
 
-    public Integer getTheX() {
-        return theX;
-    }
-
-    public Integer getTheY() {
-        return theY;
-    }
-
     public Integer getOutputX() {
-        return outputX;
+        return currentPointX;
     }
 
     public Integer getOutputY() {
-        return outputY;
+        return currentPointY;
+    }
+
+    public int getPointX() {
+        return pointX;
+    }
+
+    public int getPointY() {
+        return pointY;
     }
 
     public void setOutputX(int number){
-        outputX = number;
+        currentPointX = number;
     }
 
     public void  setOutputY(int number){
-        outputY = number;
+        currentPointY = number;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public int getCurretnHP() {
+        return curretnHP;
+    }
+
+    public Integer getMaxHP() {
+        return maxHP;
+    }
+
+    public int getDefendPoints() {
+        return defendPoints;
+    }
+
+    public int getStrikePoints() {
+        return strikePoints;
+    }
+
+    public String getDisplayedName() {
+        return displayedName;
+    }
+
+    public void setCurretnHP(int inputNumber){
+        curretnHP = inputNumber;
+    }
+
+    public Boolean getAlive(){
+        return alive;
+    }
+
+    public void setAlive(Boolean newBool){
+        alive = newBool;
+    }
+
+    public void strike(Character attacked) {
+        int randomStrikeValue = 2 * random.nextInt(1, 7) + this.strikePoints;
+        if (randomStrikeValue > attacked.defendPoints) {
+            attacked.setCurretnHP(attacked.getCurretnHP() + attacked.defendPoints - randomStrikeValue);
+            if (attacked.curretnHP <= 0) {
+                alive = false;
+            }
+        }
+    }
+
+
+    public Boolean getBattleMode(){
+        return battleMode;
+    }
+
+    public void setBattleMode(boolean bool){
+        this.battleMode = bool;
+    }
+
+    public void setPointX(int pointX) {
+        this.pointX = pointX;
+    }
+
+    public void setPointY(int pointY) {
+        this.pointY = pointY;
     }
 }

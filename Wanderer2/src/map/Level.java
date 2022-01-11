@@ -8,8 +8,14 @@ public class Level {
 
 
     List<List<Object>> level;
+    int mapLevel;
+
 
     public Level() {
+
+        this.mapLevel = 0;
+
+
 
         level= new ArrayList<>();
         List<Object> x0 = Arrays.asList(0, 0, 'X', 1, 0, 1, 0, 0, 0, 0);
@@ -36,12 +42,19 @@ public class Level {
     }
 
     public List<Object> get(int number) {
-        List<Object> row = level.get(number);
-        return row;
+        return level.get(number);
     }
 
     public Object gets(List<Object> row , int number){
-        Object object = row.get(number);
-        return object;
+        return row.get(number);
     }
+
+    public int getMapLevel(){
+        return this.mapLevel;
+    }
+
+    public void setMapLevel(){
+        this.mapLevel ++;
+    }
+
 }
