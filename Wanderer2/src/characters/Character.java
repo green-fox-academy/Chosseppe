@@ -21,6 +21,7 @@ public class Character {
     int currentPointX;
     int currentPointY;
     boolean battleMode;
+    boolean hasKey;
 
     public void goDown(){
         this.pointY++;
@@ -122,8 +123,10 @@ public class Character {
         if (randomStrikeValue > attacked.defendPoints) {
             attacked.setCurretnHP(attacked.getCurretnHP() + attacked.defendPoints - randomStrikeValue);
             if (attacked.curretnHP <= 0) {
-                alive = false;
+                attacked.setAlive(false);
             }
+        }else{
+            attacked.setCurretnHP(attacked.getCurretnHP());
         }
     }
 
@@ -142,5 +145,13 @@ public class Character {
 
     public void setPointY(int pointY) {
         this.pointY = pointY;
+    }
+
+    public boolean getHasKey() {
+        return hasKey;
+    }
+
+    public void setHasKey(boolean hasKey) {
+        this.hasKey = hasKey;
     }
 }

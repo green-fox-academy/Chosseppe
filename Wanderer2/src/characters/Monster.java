@@ -17,4 +17,5 @@ public class Monster extends Character{
         this.pointX = 0;
         this.pointY = 0;
     }
+
 }

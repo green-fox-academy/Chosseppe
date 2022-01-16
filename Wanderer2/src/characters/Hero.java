@@ -48,7 +48,12 @@ public class Hero extends Character{
     public void levelUp(){
         int temp = random.nextInt(1, 7);
         this.maxHP += temp;
-        this.curretnHP += temp;
+        if(this.curretnHP + temp <= this.maxHP) {
+            this.curretnHP += temp;
+        }else{
+            int tempNumber = (this.curretnHP + temp) - this.maxHP;
+            this.curretnHP = this.curretnHP + temp - tempNumber;
+        }
         this.defendPoints += random.nextInt(1, 7);
         this.strikePoints += random.nextInt(1, 7);
         this.level++;

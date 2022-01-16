@@ -1,16 +1,17 @@
+import characters.Boss;
+import characters.Character;
+import characters.Hero;
+import characters.Monster;
+import map.Level;
+
+import java.util.Timer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-import characters.Character;
-import characters.Hero;
-import characters.Monster;
-import characters.Boss;
-import map.Level;
+import java.util.List;
+import java.util.*;
 
 
 public class Board extends JComponent implements KeyListener {
@@ -20,19 +21,17 @@ public class Board extends JComponent implements KeyListener {
     Hero hero = new Hero();
     int killedBossCount = 0;
     Level level = new Level();
-
     List<Character> creatures = new ArrayList<>();
     String point = hero.getGoDown();
     int countMonsters = 0;
+    static Timer timer;
     Character fighted;
     Monster monster1 = new Monster(level.getMapLevel());
     Monster monster2 = new Monster(level.getMapLevel());
     Monster monster3 = new Monster(level.getMapLevel());
     Boss boss = new Boss(level.getMapLevel());
     List<Character> deadCreatures = new ArrayList<>();
-
-
-
+    int timerCounter;
 
 
     public Board() {
@@ -41,6 +40,11 @@ public class Board extends JComponent implements KeyListener {
         // set the size of your draw board
         setPreferredSize(new Dimension(720, 770));
         setVisible(true);
+
+        timer = new Timer();
+
+
+
     }
 
     @Override
@@ -86,7 +90,7 @@ public class Board extends JComponent implements KeyListener {
 
 
         //Draw hero position on map with correct direction
-        if (hero.getCurretnHP() > 0) {
+        if (hero.getCurretnHP() > 0 || hero.getAlive()) {
             PositionedImage heroImg = new
                     PositionedImage(hero.getImage() + point, hero.getOutputX() * 72, hero.getOutputY() * 72);
             heroImg.draw(graphics);
@@ -198,35 +202,97 @@ public class Board extends JComponent implements KeyListener {
             hero.setBattleMode(false);
             repaint();
         }
-        for(int i = 0; i < creatures.size(); i++){
-            if(creatures.get(i) instanceof Monster && !creatures.get(i).getAlive() && Objects.equals(hero.getOutputX(), creatures.get(i).getOutputX()) &&
-                    Objects.equals(hero.getOutputY(), creatures.get(i).getOutputY())){
-                creatures.get(i).setPointX(-20);
-                creatures.get(i).setPointY(-20);
-                if(!deadCreatures.contains(creatures.get(i))){
-                    deadCreatures.add(creatures.get(i));
+        for (Character character : creatures) {
+            if (character instanceof Monster && !character.getAlive() && Objects.equals(hero.getOutputX(), character.getOutputX()) &&
+                    Objects.equals(hero.getOutputY(), character.getOutputY())) {
+                character.setPointX(-20);
+                character.setPointY(-20);
+                if(character.getHasKey()){
+                    hero.setHasKey(true);
+                    character.setHasKey(false);
+                }
+                if (!deadCreatures.contains(character)) {
+                    deadCreatures.add(character);
                 }
                 hero.levelUp();
-            }else if(creatures.get(i) instanceof Boss  && !creatures.get(i).getAlive() && killedBossCount < level.getMapLevel() ){
-                creatures.get(i).setPointX(-30);
-                creatures.get(i).setPointY(-30);
+            } else if (character instanceof Boss && !character.getAlive() && killedBossCount < 1) {
+                character.setPointX(-30);
+                character.setPointY(-30);
                 killedBossCount++;
-                if(!deadCreatures.contains(creatures.get(i))){
-                    deadCreatures.add(creatures.get(i));
+                if(character.getHasKey()){
+                    hero.setHasKey(true);
+                    character.setHasKey(false);
+                }
+                if (!deadCreatures.contains(character)) {
+                    deadCreatures.add(character);
                 }
                 hero.levelUp();
             }
         }
-        if(deadCreatures.size() == creatures.size()){
+        if(deadCreatures.size() == creatures.size() || hero.getHasKey()){
+            timerCounter = 0;
+            hero.setHasKey(false);
+            Random random = new Random();
             level.setMapLevel();
             creatures = new ArrayList<>();
             point = hero.getGoDown();
             countMonsters = 0;
-            monster1 = new Monster(level.getMapLevel());
-            monster2 = new Monster(level.getMapLevel());
-            monster3 = new Monster(level.getMapLevel());
-            boss = new Boss(level.getMapLevel());
+            killedBossCount = 0;
+
+            int heroRegen = random.nextInt(0,10);
+            if(heroRegen <5) {
+                if(hero.getCurretnHP() + (hero.getMaxHP() / 10) <= hero.getMaxHP()) {
+                    hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 10));
+                }else{
+                    int subtract = (hero.getCurretnHP() + (hero.getMaxHP() / 10)) - hero.getMaxHP();
+                    hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 10) - subtract);
+                }
+            }else if(heroRegen > 4 && heroRegen < 9){
+                if(hero.getCurretnHP() + (hero.getMaxHP() / 10) <= hero.getMaxHP()) {
+                    hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 3));
+                }else{
+                    int subtract = (hero.getCurretnHP() + (hero.getMaxHP() / 3)) - hero.getMaxHP();
+                    hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 3) - subtract);
+                }
+            }else {
+                hero.setCurretnHP( hero.getMaxHP());
+            }
+
+            int monster1Level = random.nextInt(0,10);
+            if(monster1Level <5) {
+                monster1 = new Monster(level.getMapLevel());
+            }else if(monster1Level > 4 && monster1Level < 9){
+                monster1 = new Monster(level.getMapLevel() + 1);
+            }else {
+                monster1 = new Monster(level.getMapLevel() + 2);
+            }
+
+            int monster2Level = random.nextInt(0,10);
+            if(monster2Level <5) {
+                monster2 = new Monster(level.getMapLevel());
+            }else if(monster2Level > 4 && monster2Level < 9){
+                monster2 = new Monster(level.getMapLevel() + 1);
+            }else {
+                monster2 = new Monster(level.getMapLevel() + 2);
+            }
+            int monster3Level = random.nextInt(0,10);
+            if(monster3Level <5) {
+                monster3 = new Monster(level.getMapLevel());
+            }else if(monster3Level > 4 && monster3Level < 9){
+                monster3 = new Monster(level.getMapLevel() + 1);
+            }else {
+                monster3 = new Monster(level.getMapLevel() + 2);
+            }
+            int bossLevel = random.nextInt(0,10);
+            if(bossLevel <5) {
+                boss = new Boss(level.getMapLevel() + 1);
+            }else if(bossLevel > 4 && bossLevel < 9){
+                boss = new Boss(level.getMapLevel() + 2);
+            }else {
+                boss = new Boss(level.getMapLevel() + 3);
+            }
             deadCreatures = new ArrayList<>();
+            timer = new Timer();
 
             //this code establish all character spawn points
             for (int x2 = 0; x2 < 10; x2++) {
@@ -270,11 +336,16 @@ public class Board extends JComponent implements KeyListener {
                     }
                 }
             }
+            int randomKey = random.nextInt(0, creatures.size());
             hero.setPointX(0);
             hero.setPointY(0);
-            for(Character creature : creatures){
-                creature.setPointX(0);
-                creature.setPointY(0);
+            for(int increment = 0; increment < creatures.size(); increment++){
+                creatures.get(increment).setPointX(0);
+                creatures.get(increment).setPointY(0);
+                if(increment == randomKey){
+                    creatures.get(increment).setHasKey(true);
+                }
+
             }
 
 
@@ -284,7 +355,6 @@ public class Board extends JComponent implements KeyListener {
 
 
     public static void main(String[] args) {
-
 
 
         // Here is how you set up a new window and adding our board to it
@@ -300,6 +370,45 @@ public class Board extends JComponent implements KeyListener {
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
         // because this Board class (the type of the board object) is also a KeyListener
+
+        timer.schedule(new TimerTask() {
+            String lastMoveMonster1;
+            String lastMoveMonster2;
+            String lastMoveMonster3;
+            @Override
+            public void run() {
+
+
+                board.timerCounter += 500;
+
+                if(board.timerCounter > 1500) {
+                    if (board.monster1.getAlive()) {
+                        try {
+                            lastMoveMonster1 = board.doMove(board.monster1, lastMoveMonster1);//what you want to do
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if (board.monster2.getAlive()) {
+                        try {
+                            lastMoveMonster2 = board.doMove(board.monster2, lastMoveMonster2);//what you want to do
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (board.monster3.getAlive()) {
+                        try {
+                            lastMoveMonster3 = board.doMove(board.monster3, lastMoveMonster3);//what you want to do
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            }
+        }, 0, 500);//wait 0 ms before doing the action and do it every 1000ms (1second)
+
     }
 
     // To be a KeyListener the class needs to have these 3 methods in it
@@ -319,49 +428,116 @@ public class Board extends JComponent implements KeyListener {
         // When the up or down keys hit, we change the position of our box
 
 
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            if (hero.getOutputY() != 0) {
-                if (!level.gets(level.get(hero.getOutputY() - 1), hero.getOutputX()).equals(1) && hero.getOutputY() - 1 >= 0) {
-                    hero.goUp();
+        if(hero.getAlive()) {
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                if (hero.getOutputY() != 0) {
+                    if (!level.gets(level.get(hero.getOutputY() - 1), hero.getOutputX()).equals(1) && hero.getOutputY() - 1 >= 0) {
+                        hero.goUp();
+                    }
                 }
-            }
-            point = hero.getGoUp();
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (hero.getOutputY() != 9) {
-                if (!level.gets(level.get(hero.getOutputY() + 1), hero.getOutputX()).equals(1) && hero.getOutputY() + 1 <= 9) {
-                    hero.goDown();
+                point = hero.getGoUp();
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                if (hero.getOutputY() != 9) {
+                    if (!level.gets(level.get(hero.getOutputY() + 1), hero.getOutputX()).equals(1) && hero.getOutputY() + 1 <= 9) {
+                        hero.goDown();
+                    }
                 }
-            }
-            point = hero.getGoDown();
+                point = hero.getGoDown();
 
-            // When the left or right keys hit, we change the position of our box
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (hero.getOutputX() != 9) {
-                if (!level.gets(level.get(hero.getOutputY()), hero.getOutputX() + 1).equals(1) && hero.getOutputX() + 1 <= 9) {
-                    hero.goRight();
+                // When the left or right keys hit, we change the position of our box
+            } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                if (hero.getOutputX() != 9) {
+                    if (!level.gets(level.get(hero.getOutputY()), hero.getOutputX() + 1).equals(1) && hero.getOutputX() + 1 <= 9) {
+                        hero.goRight();
+                    }
                 }
-            }
-            point = hero.getGoRight();
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (hero.getOutputX() != 0) {
-                if (!level.gets(level.get(hero.getOutputY()), hero.getOutputX() - 1).equals(1) && hero.getOutputX() - 1 >= 0) {
-                    hero.goLeft();
+                point = hero.getGoRight();
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if (hero.getOutputX() != 0) {
+                    if (!level.gets(level.get(hero.getOutputY()), hero.getOutputX() - 1).equals(1) && hero.getOutputX() - 1 >= 0) {
+                        hero.goLeft();
+                    }
+                }
+
+                // When the space key hit, we change the position of our box
+                point = hero.getGoLeft();
+            } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                if (hero.getBattleMode() && fighted.getBattleMode()) {
+                    hero.strike(fighted);
+                    repaint();
+                    if (fighted.getAlive()) {
+                        fighted.strike(hero);
+                    }
                 }
             }
 
-            // When the space key hit, we change the position of our box
-            point = hero.getGoLeft();
-        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            if (hero.getBattleMode() && fighted.getBattleMode()) {
-                hero.strike(fighted);
+            // and redraw to have a new picture with the new coordinates
+            repaint();
+        }
+    }
+
+    public String doMove(Character creature, String lastMovement) throws InterruptedException {
+        List<String> nextMovement = new ArrayList<>();
+        int randomChosenIndexForNextMovement;
+        Random random = new Random();
+        String negatedLastMovement = null;
+
+        if(hero.getAlive()) {
+            if (creature.getBattleMode() && hero.getBattleMode() && hero.getAlive()) {
+                creature.strike(hero);
                 repaint();
-                if (fighted.getAlive()) {
-                    fighted.strike(hero);
+                hero.strike(creature);
+                return "fight";
+
+            } else {
+                if (creature.getOutputY() != 0) {
+                    if (!level.gets(level.get(creature.getOutputY() - 1), creature.getOutputX()).equals(1) && creature.getOutputY() - 1 >= 0) {
+                        nextMovement.add("up");
+                    }
                 }
+
+                if (creature.getOutputY() != 9) {
+                    if (!level.gets(level.get(creature.getOutputY() + 1), creature.getOutputX()).equals(1) && creature.getOutputY() + 1 <= 9) {
+                        nextMovement.add("down");
+                    }
+                }
+                if (creature.getOutputX() != 0) {
+                    if (!level.gets(level.get(creature.getOutputY()), creature.getOutputX() - 1).equals(1) && creature.getOutputX() - 1 >= 0) {
+                        nextMovement.add("left");
+                    }
+                }
+                if (creature.getOutputX() != 9) {
+                    if (!level.gets(level.get(creature.getOutputY()), creature.getOutputX() + 1).equals(1) && creature.getOutputX() + 1 <= 9) {
+                        nextMovement.add("right");
+                    }
+                }
+                if (lastMovement != null) {
+                    switch (lastMovement) {
+                        case "up" -> negatedLastMovement = "down";
+                        case "down" -> negatedLastMovement = "up";
+                        case "left" -> negatedLastMovement = "right";
+                        case "right" -> negatedLastMovement = "left";
+                    }
+                }
+
+                if (nextMovement.size() > 1) {
+                    nextMovement.remove(negatedLastMovement);
+                }
+
+                randomChosenIndexForNextMovement = random.nextInt(0, nextMovement.size());
+
+                Thread.sleep(100);
+
+                switch (nextMovement.get(randomChosenIndexForNextMovement)) {
+                    case "up" -> creature.goUp();
+                    case "down" -> creature.goDown();
+                    case "left" -> creature.goLeft();
+                    case "right" -> creature.goRight();
+                }
+                lastMovement = nextMovement.get(randomChosenIndexForNextMovement);
+
             }
         }
-
-        // and redraw to have a new picture with the new coordinates
-        repaint();
+        return lastMovement;
     }
 }
