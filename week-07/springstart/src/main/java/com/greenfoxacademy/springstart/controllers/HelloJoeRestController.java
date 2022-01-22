@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloJoeRESTApp {
+public class HelloJoeRestController {
 
 
     @RequestMapping("/greetingYou")
     @ResponseBody
-    public Greeting greeting(@RequestParam(name = "name") String name) {
-        Greeting greets = new Greeting();
+    public GreetingController greeting(@RequestParam(name = "name") String name) {
+        GreetingController greets = new GreetingController();
         greets.setContent("Hello " + name + "!");
         return greets;
     }

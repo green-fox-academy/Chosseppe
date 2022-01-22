@@ -1,17 +1,15 @@
 package com.greenfoxacademy.springstart.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class Greeting {
+public class GreetingController {
 
     long id;
     String content;
 
 
-    public Greeting(){
+    public GreetingController(){
         this.id = 1;
         this.content = "Hello World!";
     }
