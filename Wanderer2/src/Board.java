@@ -32,6 +32,7 @@ public class Board extends JComponent implements KeyListener {
     Boss boss = new Boss(level.getMapLevel());
     List<Character> deadCreatures = new ArrayList<>();
     int timerCounter;
+    List<Character> monsters;
 
 
     public Board() {
@@ -88,14 +89,16 @@ public class Board extends JComponent implements KeyListener {
             creature.setOutputY(creature.getBoxY() + creature.getPointY());
         }
 
+        if(hero.getCurretnHP() <= 0){
+            hero.setAlive(false);
+        }
 
         //Draw hero position on map with correct direction
-        if (hero.getCurretnHP() > 0 || hero.getAlive()) {
+        if (hero.getAlive()) {
             PositionedImage heroImg = new
                     PositionedImage(hero.getImage() + point, hero.getOutputX() * 72, hero.getOutputY() * 72);
             heroImg.draw(graphics);
         } else {
-            hero.setAlive(false);
             graphics.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
             graphics.drawString("Game over", 80, 400);
         }
@@ -219,10 +222,6 @@ public class Board extends JComponent implements KeyListener {
                 character.setPointX(-30);
                 character.setPointY(-30);
                 killedBossCount++;
-                if(character.getHasKey()){
-                    hero.setHasKey(true);
-                    character.setHasKey(false);
-                }
                 if (!deadCreatures.contains(character)) {
                     deadCreatures.add(character);
                 }
@@ -238,21 +237,27 @@ public class Board extends JComponent implements KeyListener {
             point = hero.getGoDown();
             countMonsters = 0;
             killedBossCount = 0;
+            monsters = new ArrayList<>();
 
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // random regen % of hero HP
             int heroRegen = random.nextInt(0,10);
             if(heroRegen <5) {
                 if(hero.getCurretnHP() + (hero.getMaxHP() / 10) <= hero.getMaxHP()) {
                     hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 10));
                 }else{
-                    int subtract = (hero.getCurretnHP() + (hero.getMaxHP() / 10)) - hero.getMaxHP();
-                    hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 10) - subtract);
+                    hero.setCurretnHP(hero.getMaxHP());
                 }
             }else if(heroRegen > 4 && heroRegen < 9){
-                if(hero.getCurretnHP() + (hero.getMaxHP() / 10) <= hero.getMaxHP()) {
+                if(hero.getCurretnHP() + (hero.getMaxHP() / 3) <= hero.getMaxHP()) {
                     hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 3));
                 }else{
-                    int subtract = (hero.getCurretnHP() + (hero.getMaxHP() / 3)) - hero.getMaxHP();
-                    hero.setCurretnHP(hero.getCurretnHP() + (hero.getMaxHP() / 3) - subtract);
+                    hero.setCurretnHP(hero.getMaxHP());
                 }
             }else {
                 hero.setCurretnHP( hero.getMaxHP());
@@ -309,6 +314,8 @@ public class Board extends JComponent implements KeyListener {
                             monster1.setBoxY(y2);
                             if(!creatures.contains(monster1)) {
                                 creatures.add(monster1);
+                                monsters.add(monster1);
+
                             }
 
                         } else if (countMonsters == 2) {
@@ -316,6 +323,7 @@ public class Board extends JComponent implements KeyListener {
                             monster2.setBoxY(y2);
                             if(!creatures.contains(monster2)) {
                                 creatures.add(monster2);
+                                monsters.add(monster2);
                             }
 
                         } else if (countMonsters == 3) {
@@ -323,6 +331,7 @@ public class Board extends JComponent implements KeyListener {
                             monster3.setBoxY(y2);
                             if(!creatures.contains(monster3)) {
                                 creatures.add(monster3);
+                                monsters.add(monster3);
                             }
 
                         }
@@ -336,13 +345,13 @@ public class Board extends JComponent implements KeyListener {
                     }
                 }
             }
-            int randomKey = random.nextInt(0, creatures.size());
+            int randomKey = random.nextInt(0, creatures.size() + creatures.size());
             hero.setPointX(0);
             hero.setPointY(0);
             for(int increment = 0; increment < creatures.size(); increment++){
                 creatures.get(increment).setPointX(0);
                 creatures.get(increment).setPointY(0);
-                if(increment == randomKey){
+                if(increment == randomKey && creatures.get(increment) instanceof Monster){
                     creatures.get(increment).setHasKey(true);
                 }
 
@@ -375,39 +384,40 @@ public class Board extends JComponent implements KeyListener {
             String lastMoveMonster1;
             String lastMoveMonster2;
             String lastMoveMonster3;
+            String lastBossMove;
             @Override
             public void run() {
 
 
-                board.timerCounter += 500;
+                board.timerCounter += 100;
 
                 if(board.timerCounter > 1500) {
                     if (board.monster1.getAlive()) {
-                        try {
-                            lastMoveMonster1 = board.doMove(board.monster1, lastMoveMonster1);//what you want to do
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        lastMoveMonster1 = board.doMove(board.monster1, lastMoveMonster1);//what you want to do
                     }
-
                     if (board.monster2.getAlive()) {
-                        try {
-                            lastMoveMonster2 = board.doMove(board.monster2, lastMoveMonster2);//what you want to do
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        lastMoveMonster2 = board.doMove(board.monster2, lastMoveMonster2);//what you want to do
                     }
                     if (board.monster3.getAlive()) {
-                        try {
-                            lastMoveMonster3 = board.doMove(board.monster3, lastMoveMonster3);//what you want to do
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        lastMoveMonster3 = board.doMove(board.monster3, lastMoveMonster3);//what you want to do
                     }
+                    int deadMonsters = 0;
+                    for(Character deadcreature : board.deadCreatures){
+                        if(!deadcreature.getAlive()){
+                            deadMonsters++;
+                            if (deadMonsters == board.monsters.size()){
+                                if (board.boss.getAlive()) {
+                                    lastBossMove = board.doMove(board.boss, lastBossMove);//what you want to do
+                                }
+                            }
+                        }
+
+                    }
+
                 }
 
             }
-        }, 0, 500);//wait 0 ms before doing the action and do it every 1000ms (1second)
+        }, 0, 60);//wait 0 ms before doing the action and do it every 1000ms (1second)
 
     }
 
@@ -476,7 +486,7 @@ public class Board extends JComponent implements KeyListener {
         }
     }
 
-    public String doMove(Character creature, String lastMovement) throws InterruptedException {
+    public String doMove(Character creature, String lastMovement){
         List<String> nextMovement = new ArrayList<>();
         int randomChosenIndexForNextMovement;
         Random random = new Random();
@@ -496,7 +506,7 @@ public class Board extends JComponent implements KeyListener {
                     }
                 }
 
-                if (creature.getOutputY() != 9) {
+                if (creature.getOutputY() < 9) {
                     if (!level.gets(level.get(creature.getOutputY() + 1), creature.getOutputX()).equals(1) && creature.getOutputY() + 1 <= 9) {
                         nextMovement.add("down");
                     }
@@ -526,7 +536,6 @@ public class Board extends JComponent implements KeyListener {
 
                 randomChosenIndexForNextMovement = random.nextInt(0, nextMovement.size());
 
-                Thread.sleep(100);
 
                 switch (nextMovement.get(randomChosenIndexForNextMovement)) {
                     case "up" -> creature.goUp();

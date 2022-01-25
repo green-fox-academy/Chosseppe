@@ -51,8 +51,7 @@ public class Hero extends Character{
         if(this.curretnHP + temp <= this.maxHP) {
             this.curretnHP += temp;
         }else{
-            int tempNumber = (this.curretnHP + temp) - this.maxHP;
-            this.curretnHP = this.curretnHP + temp - tempNumber;
+            this.curretnHP = this.maxHP;
         }
         this.defendPoints += random.nextInt(1, 7);
         this.strikePoints += random.nextInt(1, 7);
