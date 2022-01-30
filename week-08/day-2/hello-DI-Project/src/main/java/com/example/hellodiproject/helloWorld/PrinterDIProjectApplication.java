@@ -21,6 +21,5 @@ public class PrinterDIProjectApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception{
-        System.out.println("I feel error in the Matrix");
     }
 }
