@@ -1,5 +1,6 @@
 package com.example.hellodiproject.usefulutilities;
 
+import com.example.hellodiproject.usefulutilities.services.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ public class UsefulUtilitiesApplication implements CommandLineRunner {
     public UsefulUtilitiesApplication(UtilityService utilityService){
         this.utilityService = utilityService;
     }
+
     @RequestMapping("/useful")
     @ResponseBody
     public void index(){

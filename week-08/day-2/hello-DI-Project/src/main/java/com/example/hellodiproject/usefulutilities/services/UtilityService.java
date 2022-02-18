@@ -1,4 +1,4 @@
-package com.example.hellodiproject.usefulutilities;
+package com.example.hellodiproject.usefulutilities.services;
 
 import org.springframework.stereotype.Service;
 
@@ -25,6 +25,14 @@ public class UtilityService {
 
     public String randomColor() {
         return colors.get(random.nextInt(colors.size()));
+    }
+
+    public String validateEmail(String inputMail){
+        if(inputMail.contains("@") && inputMail.contains(".")){
+            return inputMail + " is a valid email address";
+        }else {
+            return inputMail + " is not a valid email address";
+        }
     }
 
 
