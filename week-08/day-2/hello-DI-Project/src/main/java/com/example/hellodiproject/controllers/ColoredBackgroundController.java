@@ -1,6 +1,6 @@
-package com.example.hellodiproject.usefulutilities.controllers;
+package com.example.hellodiproject.controllers;
 
-import com.example.hellodiproject.usefulutilities.services.UtilityService;
+import com.example.hellodiproject.services.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

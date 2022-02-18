@@ -1,4 +1,4 @@
-package com.example.hellodiproject.color;
+package com.example.hellodiproject.interfaces;
 
 public interface MyColor {
     void printColor();

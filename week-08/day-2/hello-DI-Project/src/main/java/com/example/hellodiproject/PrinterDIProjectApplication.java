@@ -1,5 +1,6 @@
-package com.example.hellodiproject.helloWorld;
+package com.example.hellodiproject;
 
+import com.example.hellodiproject.services.PrinterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +11,8 @@ public class PrinterDIProjectApplication implements CommandLineRunner {
 
 
     @Autowired
-    public PrinterDIProjectApplication(Printer printer){
-        printer.log("Ola senor!");
+    public PrinterDIProjectApplication(PrinterService printerService){
+        printerService.log("Ola senor!");
 
     }
 

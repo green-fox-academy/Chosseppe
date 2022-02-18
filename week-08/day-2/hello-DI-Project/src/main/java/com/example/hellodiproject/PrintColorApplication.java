@@ -1,5 +1,6 @@
-package com.example.hellodiproject.color;
+package com.example.hellodiproject;
 
+import com.example.hellodiproject.interfaces.MyColor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

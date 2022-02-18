@@ -1,4 +1,4 @@
-package com.example.hellodiproject.usefulutilities.services;
+package com.example.hellodiproject.services;
 
 import org.springframework.stereotype.Service;
 

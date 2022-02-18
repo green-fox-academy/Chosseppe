@@ -1,6 +1,6 @@
-package com.example.hellodiproject.usefulutilities;
+package com.example.hellodiproject;
 
-import com.example.hellodiproject.usefulutilities.services.UtilityService;
+import com.example.hellodiproject.services.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

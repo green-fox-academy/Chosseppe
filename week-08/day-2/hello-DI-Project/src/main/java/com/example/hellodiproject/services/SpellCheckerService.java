@@ -1,10 +1,10 @@
-package com.example.hellodiproject.spellchecker;
+package com.example.hellodiproject.services;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class SpellChecker {
-    public SpellChecker() {
+public class SpellCheckerService {
+    public SpellCheckerService() {
         System.out.println("Inside SpellChecker constructor." );
     }
 
