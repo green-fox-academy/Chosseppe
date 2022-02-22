@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Student list</title>
+    <link rel="stylesheet" th:ref="style">
+</head>
+<body>
+<button type="button" th:onclick="|window.location.href='/gfa/list'|">List of students</button>
+<button type="button" th:onclick="|window.location.href='/gfa/add'|">Add a new student</button>
+<button type="button" th:onclick="|window.location.href='/gfa/count'|">Count all students</button>
+<button type="button" th:onclick="|window.location.href='/gfa/check'|">Check student</button>
+
+<table>
+    <tr>
+        <th>Name of student</th>
+    </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
