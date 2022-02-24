@@ -1,7 +1,7 @@
-package com.example.todoh2.services;
+package com.greenfox.todomysql.services;
 
 
-import com.example.todoh2.models.ToDo;
+import com.greenfox.todomysql.models.ToDo;
 
 import java.util.List;
 

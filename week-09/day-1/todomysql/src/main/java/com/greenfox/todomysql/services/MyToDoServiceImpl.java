@@ -1,7 +1,7 @@
-package com.example.todoh2.services;
+package com.greenfox.todomysql.services;
 
-import com.example.todoh2.models.ToDo;
-import com.example.todoh2.repositories.MyToDoRepository;
+import com.greenfox.todomysql.models.ToDo;
+import com.greenfox.todomysql.repositories.MyToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

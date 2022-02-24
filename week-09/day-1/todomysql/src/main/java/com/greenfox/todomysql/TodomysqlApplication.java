@@ -1,5 +1,8 @@
 package com.greenfox.todomysql;
 
+import com.greenfox.todomysql.models.ToDo;
+import com.greenfox.todomysql.repositories.MyToDoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,9 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TodomysqlApplication implements CommandLineRunner {
 
+    private MyToDoRepository myToDoRepository;
 
+    @Autowired
+    public TodomysqlApplication(MyToDoRepository myToDoRepository) {
+        this.myToDoRepository = myToDoRepository;
+    }
 
-    
     public static void main(String[] args) {
         SpringApplication.run(TodomysqlApplication.class, args);
     }
@@ -17,8 +24,8 @@ public class TodomysqlApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        myToDoRepository.save(new com.example.todoh2.models.ToDo("buy a bread"));
-        myToDoRepository.save(new com.example.todoh2.models.ToDo("go to the water"));
-        myToDoRepository.save(new com.example.todoh2.models.ToDo("learn harder"));
+        myToDoRepository.save(new ToDo("buy a bread"));
+        myToDoRepository.save(new ToDo("go to the water"));
+        myToDoRepository.save(new ToDo("learn harder"));
     }
 }

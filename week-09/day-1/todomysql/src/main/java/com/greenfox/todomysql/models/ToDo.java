@@ -1,4 +1,4 @@
-package com.example.todoh2.models;
+package com.greenfox.todomysql.models;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package com.example.todoh2.controllers;
+package com.greenfox.todomysql.controllers;
 
-import com.example.todoh2.services.MyToDoService;
+import com.greenfox.todomysql.services.MyToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
