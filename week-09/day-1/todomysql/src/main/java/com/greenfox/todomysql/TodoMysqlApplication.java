@@ -1,24 +1,24 @@
-package com.greenfox.listtodomysql;
+package com.greenfox.todomysql;
 
-import com.greenfox.listtodomysql.models.ToDo;
-import com.greenfox.listtodomysql.repositories.MyToDoRepository;
+import com.greenfox.todomysql.models.ToDo;
+import com.greenfox.todomysql.repositories.MyToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TodomysqlApplication implements CommandLineRunner {
+public class ListTodoMysqlApplication implements CommandLineRunner {
 
     private MyToDoRepository myToDoRepository;
 
     @Autowired
-    public TodomysqlApplication(MyToDoRepository myToDoRepository) {
+    public ListTodoMysqlApplication(MyToDoRepository myToDoRepository) {
         this.myToDoRepository = myToDoRepository;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(TodomysqlApplication.class, args);
+        SpringApplication.run(ListTodoMysqlApplication.class, args);
     }
 
 

@@ -21,8 +21,10 @@ public class ToDo {
 
     private boolean done = false;
 
-    public ToDo(String title) {
+    public ToDo(String title, boolean done, boolean urgent) {
         this.title = title;
+        this.done = done;
+        this.urgent = urgent;
     }
     public ToDo(){
 

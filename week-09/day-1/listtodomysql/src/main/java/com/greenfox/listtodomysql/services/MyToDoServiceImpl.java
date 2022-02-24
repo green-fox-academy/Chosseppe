@@ -20,4 +20,9 @@ public class MyToDoServiceImpl implements MyToDoService{
     public List<ToDo> findAll() {
         return myToDoRepository.findAll();
     }
+
+    @Override
+    public List<ToDo> findByIsActive(boolean isActive) {
+        return myToDoRepository.findByIsActive(!isActive);
+    }
 }

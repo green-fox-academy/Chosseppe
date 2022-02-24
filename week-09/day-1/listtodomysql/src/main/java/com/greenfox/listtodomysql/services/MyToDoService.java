@@ -9,4 +9,6 @@ public interface MyToDoService {
 
     List<ToDo> findAll();
 
+    List<ToDo> findByIsActive(boolean isActive);
+
 }

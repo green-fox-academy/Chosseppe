@@ -1,10 +1,10 @@
-package com.greenfox.todomysql;
+package com.greenfox.listtodomysql;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TodomysqlApplicationTests {
+class ListTodomysqlApplicationTests {
 
     @Test
     void contextLoads() {
