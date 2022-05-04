@@ -1,0 +1,32 @@
+body {
+    background-color: lightblue;
+}
+table {
+
+    width: 40%;
+    border-collapse: collapse;
+    font-size: 30px;
+
+}
+
+table, th, td {
+    border: 1px solid #3b3b3b;
+}
+td, th {
+    padding: 3% 70% 3% 2%;
+}
+
+th {
+    background-color: black;
+    color: #ffffff;
+    border-bottom: 3px solid lightblue;
+
+}
+
+tr:nth-child(odd) {
+    background-color: azure;
+}
+
+tr:nth-child(even) {
+    background-color: gray;
+}
