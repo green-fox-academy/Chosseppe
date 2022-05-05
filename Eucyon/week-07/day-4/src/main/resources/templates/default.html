@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Thymeleaf Exercise #</title>
+        <link rel="stylesheet" th:href="@{/style.css}" />
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <div>
+            <div class="list-group">
+                <table>
+                    <tr>
+                        <th>
+                            <a th:text="'Animal name'"></a>
+                        </th>
+                        <th>
+                            <a th:text="'Balance'"></a>
+                        </th>
+                        <th>
+                            <a th:text="'Animal type'"></a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:text="${bankAccount.getName()}" class="list-group-item"></a>
+                        </td>
+                        <td>
+                            <a th:text="${#numbers.formatDecimal(bankAccount.getBalance(), 0, 2)}" class="list-group-item"></a>
+                        </td>
+                        <td>
+                            <a th:text="${bankAccount.getAnimalType()}" class="list-group-item"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
