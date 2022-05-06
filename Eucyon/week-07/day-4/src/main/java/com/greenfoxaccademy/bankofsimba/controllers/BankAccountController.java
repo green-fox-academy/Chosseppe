@@ -17,4 +17,10 @@ public class BankAccountController {
         model.addAttribute("bankAccount", this.bankAccount);
         return "default";
     }
+
+
+    @RequestMapping(value = "/message")
+    public String messageShow(){
+        return "message";
+    }
 }
