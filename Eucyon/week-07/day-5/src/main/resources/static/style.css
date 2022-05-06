@@ -1,0 +1,22 @@
+
+h1{
+    position: absolute;
+    color: deepskyblue;
+    left: 1%;
+    top: 1%;
+}
+hr{
+    position: absolute;
+    left: 1%;
+    top: 7.5%
+}
+div{
+    position: absolute;
+    left: 1%;
+    top: 10%;
+}
+button{
+    background-color: red;
+    color: white;
+}
+
