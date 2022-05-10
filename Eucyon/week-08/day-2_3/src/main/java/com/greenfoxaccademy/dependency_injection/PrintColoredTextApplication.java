@@ -1,6 +1,6 @@
-package com.example.hellodiproject;
+package com.greenfoxaccademy.dependency_injection;
 
-import com.example.hellodiproject.interfaces.MyColor;
+import com.greenfoxaccademy.dependency_injection.interfaces.MyColorInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,13 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
-public class PrintColorApplication implements CommandLineRunner {
+public class PrintColoredTextApplication implements CommandLineRunner {
 
-    MyColor color;
+    MyColorInterface color;
 
     @Autowired
-    public PrintColorApplication(MyColor color){
-        this.color = color;
+    public PrintColoredTextApplication(MyColorInterface color){
         color.printColor();
 
     }
@@ -24,7 +23,7 @@ public class PrintColorApplication implements CommandLineRunner {
         color.printColor();
     }
 
-    public static void main(String[] args) {SpringApplication.run(PrintColorApplication.class, args);}
+    public static void main(String[] args) {SpringApplication.run(PrintColoredTextApplication.class, args);}
 
     @Override
     public void run(String... args) throws Exception {
