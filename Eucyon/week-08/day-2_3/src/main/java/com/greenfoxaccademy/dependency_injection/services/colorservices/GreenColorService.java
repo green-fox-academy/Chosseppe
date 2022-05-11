@@ -16,6 +16,6 @@ public class GreenColorService implements MyColorInterface {
     }
 
     public void printColor(){
-        printer.log("\033[0;32m It is red in color... \033[0m");
+        printer.log("\033[0;32m It is green color... \033[0m");
     }
 }

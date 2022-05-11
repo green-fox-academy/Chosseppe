@@ -16,6 +16,6 @@ public class BlueColorService implements MyColorInterface {
     }
 
     public void printColor(){
-        printer.log("\033[0;34m It is red in color... \033[0m");
+        printer.log("\033[0;34m It is blue color... \033[0m");
     }
 }
