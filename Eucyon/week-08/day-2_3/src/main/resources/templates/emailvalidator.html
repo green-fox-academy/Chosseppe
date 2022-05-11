@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head>
+        <meta charset="UTF-8">
+        <title>Email Validation</title>
+    </head>
+    <body th:style="|${validateEmail.contains('not') ? 'color: red;' : 'color: green;'}|" th:text="${validateEmail}">
+
+    </body>
+</html>
