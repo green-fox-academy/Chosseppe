@@ -1,4 +1,4 @@
-package com.greenfox.greenfoxclassapp.services;
+package com.greenfoxaccademy.greenfoxclassapp.services;
 
 import org.springframework.stereotype.Service;
 
@@ -23,6 +23,4 @@ public class StudentService {
     public void save(String student) {
         names.add(student);
     }
-
-    public int Count(List<String> students) { return students.size();}
 }
