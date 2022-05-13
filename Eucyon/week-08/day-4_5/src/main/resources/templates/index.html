@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home page</title>
+    </head>
+    <body>
+        <li>
+           <button type="button" th:onclick="|window.location.href='/path/to/action'|">Information</button>
+        </li>
+        <img src="/static/images/greenfox.png" alt="Green Fox">
+        <p>
+            This is
+            <span th:text=" ${fox.getName()}"></span>
+            . Currently, living on
+            <span th:text=" ${fox.field(fox.getFood())}"></span>
+            . He knows
+            <span th:text=" ${fox.tricks.size()}"></span>
+            tricks.
+        </p>
+        <h1>Known tricks</h1>
+        <div th:each="trick : ${fox.tricks}">
+            <li th:text="${trick}">
+
+            </li>
+        </div>
+
+    </body>
+</html>
