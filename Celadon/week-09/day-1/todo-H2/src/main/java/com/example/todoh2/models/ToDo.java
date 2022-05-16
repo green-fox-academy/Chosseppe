@@ -24,7 +24,5 @@ public class ToDo {
     public ToDo(String title) {
         this.title = title;
     }
-    public ToDo(){
-
-    }
+    public ToDo(){}
 }
