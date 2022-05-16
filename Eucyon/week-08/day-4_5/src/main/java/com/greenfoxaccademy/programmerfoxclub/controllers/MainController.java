@@ -11,7 +11,7 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private Fox fox = new Fox("Mr. Fox", Arrays.asList("pizza", "lemonade"), Arrays.asList("HTML", "Java"));
+    private Fox fox = new Fox("Mr. Fox", "pizza", "lemonade", Arrays.asList("HTML", "Java"));
 
     @RequestMapping(value = "/")
     public String homePageShow(Model model){
