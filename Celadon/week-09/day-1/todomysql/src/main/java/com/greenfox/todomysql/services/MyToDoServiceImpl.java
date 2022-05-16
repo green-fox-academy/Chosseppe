@@ -16,6 +16,7 @@ public class MyToDoServiceImpl implements MyToDoService{
     public MyToDoServiceImpl(MyToDoRepository myToDoRepository){
         this.myToDoRepository = myToDoRepository;
     }
+
     @Override
     public List<ToDo> findAll() {
         return myToDoRepository.findAll();

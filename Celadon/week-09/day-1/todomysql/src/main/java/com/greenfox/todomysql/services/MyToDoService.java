@@ -1,6 +1,5 @@
 package com.greenfox.todomysql.services;
 
-
 import com.greenfox.todomysql.models.ToDo;
 
 import java.util.List;

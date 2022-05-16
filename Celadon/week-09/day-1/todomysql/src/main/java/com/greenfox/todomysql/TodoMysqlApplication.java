@@ -8,17 +8,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ListTodoMysqlApplication implements CommandLineRunner {
+public class TodoMysqlApplication implements CommandLineRunner {
 
     private MyToDoRepository myToDoRepository;
 
     @Autowired
-    public ListTodoMysqlApplication(MyToDoRepository myToDoRepository) {
+    public TodoMysqlApplication(MyToDoRepository myToDoRepository) {
         this.myToDoRepository = myToDoRepository;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ListTodoMysqlApplication.class, args);
+        SpringApplication.run(TodoMysqlApplication.class, args);
     }
 
 
