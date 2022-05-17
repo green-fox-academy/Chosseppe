@@ -15,24 +15,23 @@
     <div class="container">
         <table class="table">
             <thead>
-                <!-- <tr>
+                <tr>
+                    <th scope="col">Id</th>
                     <th scope="col">Title</th>
                     <th scope="col">Done</th>
                     <th scope="col">Urgent</th>
-                </tr> -->
+                </tr>
             </thead>
             <tbody>
-                <tr th:each="MyTodo : ${myToDos}">
-                    <td>
-                        <li th:text="${MyTodo.getTitle()}">Mark</li>
-                    <!--    <td th:text="${MyTodo.isDone()}">Mark</td>
+                    <tr th:each="MyTodo : ${myToDos}">
+                        <td th:text="${MyTodo.getId()}">Mark</td>
+                        <td th:text="${MyTodo.getTitle()}">Mark</td>
+                        <td th:text="${MyTodo.isDone()}">Mark</td>
                         <td th:text="${MyTodo.isUrgent()}">Mark</td>
-                        -->
-                    </td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
 
         <!-- Optional JavaScript; choose one of the two! -->
 

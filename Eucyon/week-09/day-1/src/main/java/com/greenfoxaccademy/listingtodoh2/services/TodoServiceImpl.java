@@ -19,4 +19,10 @@ public class TodoServiceImpl implements TodoService{
     public List<Todo> findAll() {
         return (List<Todo>) todoRepository.findAll();
     }
+
+    @Override
+    public List<Todo> findByIsActive(boolean isActive) {
+        return todoRepository.findByIsActive(!isActive);
+    }
+
 }
