@@ -1,10 +1,11 @@
 package com.greenfoxaccademy.listingtodoh2.models;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity(name = "to_do")
 public class Todo {
 
