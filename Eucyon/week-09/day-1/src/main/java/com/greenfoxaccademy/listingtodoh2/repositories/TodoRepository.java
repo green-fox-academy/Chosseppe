@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TodoRepository extends CrudRepository<Todo, Long> {
 
-    @Query("SELECT todo FROM To_Do todo WHERE todo.done=?1 ")
-    List<Todo> findByIsActive(boolean isActive);
+    @Query("SELECT todo FROM to_do todo WHERE todo.done =?1 ")
+    List<Todo> findByIsActive(boolean isDone);
 }

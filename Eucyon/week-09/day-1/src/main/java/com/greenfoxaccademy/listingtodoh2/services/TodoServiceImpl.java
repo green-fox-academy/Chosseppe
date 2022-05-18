@@ -21,8 +21,8 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public List<Todo> findByIsActive(boolean isActive) {
-        return todoRepository.findByIsActive(!isActive);
+    public List<Todo> findByIsActive(boolean isDone) {
+        return todoRepository.findByIsActive(!isDone);
     }
 
 }

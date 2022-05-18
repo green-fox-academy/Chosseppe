@@ -26,5 +26,6 @@ public class ToDo {
         this.done = done;
         this.urgent = urgent;
     }
+
     public ToDo(){}
 }

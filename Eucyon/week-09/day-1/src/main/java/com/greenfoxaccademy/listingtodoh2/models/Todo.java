@@ -4,23 +4,25 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity(name = "To_Do")
 @Data
+@Entity(name = "to_do")
 public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    public String title;
-    public boolean urgent;
-    public boolean done;
+    private String title;
+    private boolean urgent;
+    private boolean done;
 
-    public Todo(String title, boolean urgent , boolean done){
+    public Todo(String title, boolean done , boolean urgent){
         this.title = title;
         this.urgent = urgent;
-        this.done = done;}
+        this.done = done;
+    }
+
+    public Todo(String title){this.title = title;}
+
     public Todo(){}
-
-
 }

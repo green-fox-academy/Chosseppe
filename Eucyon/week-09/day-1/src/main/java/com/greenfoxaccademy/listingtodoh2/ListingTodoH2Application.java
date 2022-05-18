@@ -28,7 +28,7 @@ public class ListingTodoH2Application implements CommandLineRunner {
         todoRepository.save(new Todo("do the washing up", true, false));
         todoRepository.save(new Todo("clean the bathroom and the kitchen", true, true));
         todoRepository.save(new Todo("wipe all surfaces with a cloth", true, false));
-        todoRepository.save(new Todo("remove the grease", true, false));
+        todoRepository.save(new Todo("remove the grease", true, true));
         todoRepository.save(new Todo("tidy up", false, false));
         todoRepository.save(new Todo("throw away the rubbish", true, true));
         todoRepository.save(new Todo("broom", true, false));

@@ -8,7 +8,7 @@ public interface TodoService {
 
     List<Todo> findAll();
 
-    List<Todo> findByIsActive(boolean isActive);
+    List<Todo> findByIsActive(boolean isDone);
 
 
 }
