@@ -21,17 +21,19 @@ public class TodoController {
         this.todoRepository = todoRepository;
     }
 
-        @RequestMapping("/todo")
-        public String homePage(@RequestParam(name = "isActive", required = false) Boolean isActive, Model model) {
-            if (isActive == null) {
-                model.addAttribute("ToDos", todoService.findAll());
-            } else {
-                model.addAttribute("ToDos", todoService.findByIsActive(isActive));
-            }
-            return "index";
+    // homepage part of code 127.0.0.1:8080/todo
+    @RequestMapping("/todo")
+    public String homePage(@RequestParam(name = "isActive", required = false) Boolean isActive, Model model) {
+        if (isActive == null) {
+            model.addAttribute("ToDos", todoService.findAll());
+        } else {
+            model.addAttribute("ToDos", todoService.findByIsActive(isActive));
         }
+        return "index";
+    }
 
 
+    // part which is responsible for deleting tasks by their unique ID
     @GetMapping("/todo/{id}/delete")
     public String deleteTodo(@PathVariable Long id, Model model){
         todoRepository.deleteById(id);
