@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <a th:href="@{'/submit'}">Submit new post</a><br><br>
+        <h1>Trending posts</h1><br><br>
+        <table>
+            <tbody>
+                <tr th:each="Post:${Posts}">
+                    <td th:text = "${Post.getPositive()} - ${Post.getNegative()}"></td>
+                    <td><a th:href="@{'/' + ${Post.getId()} + '/positive'}">+</a></td>
+                    <td><a th:href="@{'/' + ${Post.getId()} + '/negative'}">-</a></td>
+                    <td th:text = "${Post.getTitle()}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
