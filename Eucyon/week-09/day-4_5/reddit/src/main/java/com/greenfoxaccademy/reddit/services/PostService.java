@@ -10,8 +10,8 @@ public interface PostService {
 
     List<Post> findAll();
 
-   Post searchById(Long id);
+   void voteUp(Long id);
 
-   List<Post> savePost(Post post);
+    void voteDown(Long id);
 
 }

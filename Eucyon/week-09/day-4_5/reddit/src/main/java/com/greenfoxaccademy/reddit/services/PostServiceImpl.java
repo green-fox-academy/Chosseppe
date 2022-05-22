@@ -16,16 +16,20 @@ public class PostServiceImpl implements PostService{
     public PostServiceImpl(PostRepository postRepository){this.postRepository = postRepository;}
 
     @Override
-    public List<Post> findAll(){return (List<Post>) postRepository.findAll();}
+    public List<Post> findAll(){return postRepository.findAll();}
 
     @Override
-    public Post searchById(Long id) {return
-        postRepository.getById(id);
+    public void voteUp(Long id) {
+        Post outPost = postRepository.getById(id);
+        outPost.setPositive(outPost.getPositive() + 1);
+        postRepository.save(outPost);
     }
 
     @Override
-    public List<Post> savePost(Post post) {
-        return (List<Post>) postRepository.save(post);
+    public void voteDown(Long id) {
+        Post outPost = postRepository.getById(id);
+        outPost.setPositive(outPost.getPositive() - 1);
+        postRepository.save(outPost);
     }
 
 

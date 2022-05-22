@@ -1,6 +1,5 @@
 package com.greenfoxaccademy.reddit.controllers;
 
-import com.greenfoxaccademy.reddit.repositories.PostRepository;
 import com.greenfoxaccademy.reddit.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +27,17 @@ public class IndexController {
     @GetMapping("/submit")
     public String Submitting(){ return "submitting-new-post";}
 
+
     @GetMapping("/{id}/positive")
     public String addPositivePoint(@PathVariable Long id, Model model){
-        postService.savePost(postService.searchById(id).setPositive(postService.searchById(id).getPositive() + 1));
+        postService.voteUp(id);
+        model.addAttribute("Posts", postService.findAll());
+        return "redirect:/";
+    }
+
+    @GetMapping("/{id}/negative")
+    public String addNegativePoint(@PathVariable Long id, Model model){
+        postService.voteDown(id);
         model.addAttribute("Posts", postService.findAll());
         return "redirect:/";
     }
