@@ -2,11 +2,9 @@ package com.greenfoxaccademy.reddit.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.net.URL;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,14 +16,14 @@ public class Post {
     private Long id;
     private String title;
     private URL url;
-    private int positive;
-    private int negative;
+    private int rankingNumber;
+    @Temporal(TemporalType.DATE)
+    private Date dateOfCreate = new Date(System.currentTimeMillis());
 
     public Post(String title, URL url){
         this.title = title;
         this.url = url;
-        this.positive = 0;
-        this.negative = 0;
+        this.rankingNumber = 0;
     }
 
     public Post(){}

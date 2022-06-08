@@ -5,17 +5,29 @@
         <title>Home Page</title>
     </head>
     <body>
-        <a th:href="@{'/submit'}">Submit new post</a><br><br>
+        <a th:href="@{/submit}">Submit new post</a><br><br>
         <h1>Trending posts</h1><br><br>
         <table>
             <tbody>
-                <tr th:each="Post:${Posts}">
-                    <td th:text = "${Post.getPositive()} - ${Post.getNegative()}"></td>
-                    <td><a th:href="@{'/' + ${Post.getId()} + '/positive'}">+</a></td>
-                    <td><a th:href="@{'/' + ${Post.getId()} + '/negative'}">-</a></td>
-                    <td th:text = "${Post.getTitle()}"></td>
+                <tr th:each="Post:${posts}">
+                    <td th:text = "${Post.rankingNumber}"></td>
+                    <td><a th:href="@{'/' + ${Post.id} + '/positive'}">+</a></td>
+                    <td><a th:href="@{'/' + ${Post.id} + '/negative'}">-</a></td>
+                    <td>
+                        <h5 th:text = "${Post.dateOfCreate}"></h5>
+                    </td>
+                    <td>
+                        <h3 th:text = "${Post.title}"></h3>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <a th:if="${pageNo > 0}" th:href="@{/(pageNo=0)}">&lt;&lt;</a>
+        <a th:if="${pageNo > 0}" th:href="@{/(pageNo=${pageNo - 1})}">&lt;</a>
+        <a th:text = "${pageNo + 1}"></a>
+        <a th:if="${pageNo < posts.getTotalPages() - 1}"
+           th:href="@{/(pageNo=${pageNo + 1})}">&gt;</a>
+        <a th:if="${pageNo < posts.getTotalPages() - 1}"
+           th:href="@{/(pageNo=${posts.getTotalPages() - 1})}">&gt;&gt;</a>
     </body>
 </html>

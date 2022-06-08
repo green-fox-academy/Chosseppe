@@ -1,13 +1,16 @@
 package com.greenfoxaccademy.reddit.controllers;
 
 import com.greenfoxaccademy.reddit.services.PostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+
+@RequiredArgsConstructor
 @Controller
 public class IndexController {
 
@@ -18,9 +21,13 @@ public class IndexController {
         this.postService = postService;
     }
 
-    @RequestMapping(value = "/")
-    public String index(Model model){
-        model.addAttribute("Posts", postService.findAll());
+    @GetMapping (value = "/")
+    public String manipulateIndex(Model model,
+                        @RequestParam(required = false, defaultValue = "0") Integer pageNo){
+        model.addAttribute("pageNo", pageNo );
+        int PAGE_SIZE = 10;
+        model.addAttribute("posts",
+                postService.findAll( PageRequest.of(pageNo, PAGE_SIZE, Sort.by("rankingNumber").descending())));
         return "index";
     }
 
@@ -29,16 +36,14 @@ public class IndexController {
 
 
     @GetMapping("/{id}/positive")
-    public String addPositivePoint(@PathVariable Long id, Model model){
+    public String addPositivePoint(@PathVariable Long id){
         postService.voteUp(id);
-        model.addAttribute("Posts", postService.findAll());
         return "redirect:/";
     }
 
     @GetMapping("/{id}/negative")
-    public String addNegativePoint(@PathVariable Long id, Model model){
+    public String addNegativePoint(@PathVariable Long id){
         postService.voteDown(id);
-        model.addAttribute("Posts", postService.findAll());
         return "redirect:/";
     }
 }

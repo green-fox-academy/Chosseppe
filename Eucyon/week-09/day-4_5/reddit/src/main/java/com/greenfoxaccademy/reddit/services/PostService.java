@@ -1,17 +1,18 @@
 package com.greenfoxaccademy.reddit.services;
 
 import com.greenfoxaccademy.reddit.models.Post;
+import org.springframework.data.domain.Page;
 
-import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 public interface PostService {
 
+    Page<Post> findAll(Pageable pageable);
 
-
-    List<Post> findAll();
-
-   void voteUp(Long id);
+    void voteUp(Long id);
 
     void voteDown(Long id);
+
+    void save(Post post);
 
 }
