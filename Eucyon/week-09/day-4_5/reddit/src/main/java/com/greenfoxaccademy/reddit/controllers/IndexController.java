@@ -1,5 +1,6 @@
 package com.greenfoxaccademy.reddit.controllers;
 
+import com.greenfoxaccademy.reddit.models.User;
 import com.greenfoxaccademy.reddit.services.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String userLogin(){ return "logging";}
+
     @GetMapping("/submit")
-    public String Submitting(){ return "submitting-new-post";}
+    public String postSubmitting(){ return "submitting-new-post";}
 
 
     @GetMapping("/{id}/positive")
